@@ -1,0 +1,2 @@
+D:\Projects\MBV8WEBLEDGER\MBv8Web\MBv8Web\obj\Debug\MBv8Web.csprojResolveAssemblyReference.cache
+D:\Projects\MBV8WEBLEDGER\MBv8Web\MBv8\obj\Debug\MBv8Web.csprojResolveAssemblyReference.cache

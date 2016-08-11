@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<MCUweb-Accounting>
+  <mcu dbserver="MBTESTSERVER" port="80" timeout="120" connectionstring="Server=MBTESTSERVER\MCUDB;Database=MBv8Ledger;User Id=sa;Password=microbanker;" />
+</MCUweb-Accounting>

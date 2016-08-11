@@ -1,0 +1,61 @@
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="glyphicon glyphicon-user"></i>
+        <span id="activeuser"></span><i class="caret"></i>
+    </a>
+    <ul class="dropdown-menu">
+
+      <li class="bg-light-blue">
+      </li>
+        <!-- Menu Body -->
+      <hr />
+    
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="/Profile" class="btn btn-default btn-flat">Profile</a>
+            </div>
+            <div class="pull-right">
+                                        
+                <Button class="btn btn-default btn-flat" onclick="Eve1();">Sign out</Button>
+
+            </div>
+        </li>
+    </ul>
+</li>
+
+<script type="text/javascript">
+  function Eve1() {
+  $.post(MB.URLPoster(),  //"http://" + MB.getCookie("serveraddress") + ":8080/Default.asmx/Exec",
+  {
+  SQLStatement: "update usertable set log=0,ipaddress=null where username='"+MB.getCookie("activeid")+"'"
+  }, function (data) {
+  document.cookie = 'activeid=;';
+  document.cookie = 'isactive=;';
+  document.cookie = 'activedate=;';
+  document.cookie = 'activeemail=;';
+  document.cookie = 'activedate=;';
+  document.cookie = 'activelast=;';
+  document.cookie = 'activeposition=;';
+  document.cookie = 'activeuser=;';
+  document.cookie = 'timeout=;';
+  document.cookie = 'mbzd001=;';
+  var tt = new Date();  
+  document.cookie = 'mbzz001234='+Date.parse(tt.toDateString());
+  location.reload();
+  });
+  }
+
+  document.getElementById('activeuser').innerHTML = MB.getCookie("activeuser");
+
+  var tt = new Date();
+  var nn = (tt.getHours() * 60) + tt.getMinutes();
+  var zz = MB.getCookie("timeout");
+  var cc = MB.getCookie("mbzd001");
+
+  var yy = MB.getCookie("mbzz001234");
+  if(Date.parse(tt.toDateString()) > yy) {
+  Eve1();
+  }
+  if ((nn - cc) > zz) { Eve1(); } else { document.cookie = "mbzd001="+nn; }
+</script>

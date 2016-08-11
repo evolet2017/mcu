@@ -1,0 +1,2 @@
+asset_code,asset_desc,asset_expire,asset_serial,asset_po,pur_isnew,pur_desc,pur_date,pur_cost,pur_salvagevalue,pur_deprevalue,pur_lifeinyears,pur_annualexpense,GLACC,userid,tag,DebitGLAcct,CreditGLAcct,VendorLink,assacc,tag2
+'Car','toyota', '2015-10-04',1212,1212,0,'test','2015-10-12',1000.00,500.00,500.00,	5,	100.00,	101030003,	401,	0,	101039902,	501000702,	001, 'Building', 1

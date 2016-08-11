@@ -1,0 +1,2 @@
+asset_code,asset_desc,asset_expire,asset_serial,asset_po,pur_isnew,pur_desc,pur_date,pur_cost,pur_salvagevalue,pur_deprevalue,pur_lifeinyears,pur_annualexpense,GLACC,userid,tag,DebitGLAcct,CreditGLAcct,VendorLink,assacc
+'BLDG12345','Rizal bldg', '2020-10-04',1212,1212,1,'test','2015-10-12',599709.05,50000.00,500.00,	10,	100.00,	101030001,	990,	0,	101039903,	501000703,	003, 'Building'

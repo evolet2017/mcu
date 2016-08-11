@@ -1,0 +1,45 @@
+<html>
+<head><title></title>
+<script type="text/javascript" src="html/js/jquery.js"></script>
+
+
+</head>
+<body>
+
+	Command: <input type="text" size="100" id="cmd" name="cmd" value=""><br/>
+	cash: <input type="text" id="cash" name="cash" value="0"><br/>
+	check: <input type="text" id="checks" name="checks" value="0"><br/>
+	payable: <input type="text" id="payables" name="payables" value="0"><br/>
+
+
+
+
+<input type="button" value="hit me yeah" onclick="yo()" />
+<br >
+<div id="doc"></div>
+
+
+
+ <script>
+
+  function yo()
+  {
+	document.getElementById('cmd').value = "update dashboard set cash=cash+"+$('#cash').val()+",checks=checks+"+$('#checks').val()+",payables=payables+"+$('#payables').val()+" where id='1'";
+	var s = $('#cmd').val();
+  $.post("http://192.168.0.108:8080/Default.asmx/Execute",
+  {
+    SQLStatement: s
+  },
+    function(data){
+      //var parentDiv = document.getElementById('doc');	
+      //parentDiv.innerHTML = data;
+
+    });
+   }
+	
+
+</script>
+
+
+</body>
+</html>

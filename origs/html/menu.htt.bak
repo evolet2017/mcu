@@ -1,0 +1,35 @@
+<li class=""><a href="/Main"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+<li class=""><a href="/Transaction"><i class="fa fa-search"></i><span>View Transactions</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-money"></i><span>Banking</span><i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">
+    <li class="active" ><a href="/Bank-Account"><i class="fa fa-angle-double-right"></i>Bank Accounts</a></li>
+    <li><a href="/Banking-Deposit"><i class="fa fa-angle-double-right"></i>Deposit</a></li>
+    <li><a href="/Fund-Transfer"><i class="fa  fa-angle-double-right"></i>Fund Transfer</a></li>
+		<li><a href="/Check-Inventory"><i class="fa fa-angle-double-right"></i>Check book Inventory</a></li>
+		<li><a href="/Bank-Recon"><i class="fa fa-angle-double-right"></i>Bank Reconciliation</a></li>
+  </ul>
+</li>
+<li class="treeview"><a href="#"><i class="fa fa-bar-chart-o"></i><span>Accounts Payable</span><i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">
+    <li><a href="/Share-Withdrawals"><i class="fa fa-angle-double-right"></i>Share Withdrawals</a></li>
+    <li><a href="/Loan-Disbursement"><i class="fa fa-angle-double-right"></i>Loan Disbursement Checks</a></li>
+    <li><a href="/Po-Transactions"><i class="fa fa-angle-double-right"></i>Purchases</a></li>
+    <li><a href="/Bills-Payment"><i class="fa fa-angle-double-right"></i>Bills Payment</a></li>
+		<li><a href="/Vendor-Management"><i class="fa fa-angle-double-right"></i>Vendor Management</a></li>
+    <!--<li class="treeview"><a href="/Bills-Payment"><i class="fa fa-money"></i><span>Bills Payment</span><i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-angle-double-right"></i>Dream</a></li>
+        <li><a href="#"><i class="fa fa-angle-double-right"></i>Believe</a></li>
+        <li><a href="#"><i class="fa fa-angle-double-right"></i>Survive</a></li>
+      </ul>
+    </li>-->
+  </ul>
+</li>
+<li class="treeview"><a href="#"><i class="fa fa-laptop"></i><span>Fixed Assets</span><i class="fa fa-angle-left pull-right"></i></a>
+  <ul class="treeview-menu">				
+    <li><a href="/Fix-Assets"><i class="fa fa-angle-double-right"></i>New Asset</a></li>
+    <li><a href="#"><i class="fa fa-angle-double-right"></i> Depreciation Report</a></li>
+    <li><a href="#"><i class="fa fa-angle-double-right"></i> Sales and Disposal</a></li>
+  </ul>
+</li>
+<li class=""><a href="#"><i class="fa  fa-print"></i><span>Reports</span></a></li>

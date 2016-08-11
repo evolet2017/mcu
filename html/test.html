@@ -1,0 +1,111 @@
+<html>
+<head>
+        <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="css/datatables/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<table id="t1" class="display dataTable">
+<!-- thead><tr>
+<th></th>
+<th>test1</th>
+<th>test2</th>
+<th>test3</th>
+<th>test4</th>
+<th>test5</th>
+</tr>
+</thead -->
+<div class="add_delete_toolbar"></div>
+</table>
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/minified.js"></script>
+<script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+<script src="js/plugins/datatables/jquery.jeditable.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+		 function getFields(S) {
+			var ret = "BankID";
+			switch(S)
+			{
+				case 1: ret = "BankName"; break;
+				case 2: ret = "BankAccountNum"; break;
+				case 3: ret = "BankAccountType"; break;
+				case 4: ret = "BankAcctStatus"; break;
+				case 5: ret = "DateAdded"; break;
+			}
+			return ret;
+		 }
+
+	     function isStatus(S) {
+                 return (S==1 ? "Active":"Closed");
+             }
+
+             function isSavingsType(S) {
+                 var ret = "Savings"
+                 switch (S) {
+                     case 1: ret = "Savings"; break;
+                     case 2: ret = "Current Account"; break;
+                     case 3: ret = "Time Deposit"; break;
+                     case 4: ret = "Others"; break;
+                 }
+                 return ret;
+                         
+             }
+
+		$.post("http://localhost:8080/Default.asmx/jExec",{},function(data){
+
+			var testdata = $.parseJSON(data);
+
+			//var testdata = [[1,"ph","Mr","me and you"],[2,"ph","Mr","me and you"],[3,"ph","Mr","me and you"]];
+			console.log(testdata);
+			
+			var	oTable = $('#t1').dataTable({
+					"aaData":testdata,
+					"aoColumns": 	[
+										{ dprop: "BankID" },
+										{ dprop: "BankName" },
+										{ dprop: "BankAccountNum" },
+										{ dprop: "BankAccountType" },
+										{ dprop: "BankAcctStatus",
+											type: 'select',
+											onblur: 'submit',
+											data: "{'':'Please select','1':'Active','0':'Closed'}",
+											
+										},
+										{ dprop: "DateAdded" }
+									]
+										});
+								
+			var theCallback = function(v, s) {
+        		console.debug("Element", this);
+        		console.debug("New value:", v);
+        		console.debug("Setting object:",s);
+        		return v;
+    		};
+			$('#t1').find('td').editable(theCallback, {
+														"callback": function(sValue, y) {															
+															var aPos = oTable.fnGetPosition(this);
+															oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+															console.log("jEditable callback is executed => updating dataTable : ",sValue, getFields(oTable.fnGetPosition(this)[2]),aPos[1]);
+														},
+														"submitdata": function(value, settings) {
+															console.log("submit data? : ", oTable.fnGetPosition(this)[2]);
+														},
+															"height": "18px",
+															"width": "100%"
+    		});
+			
+		});
+
+		
+
+
+                   
+</script>
+</body>
+</html>

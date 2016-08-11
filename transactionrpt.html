@@ -1,0 +1,122 @@
+<html>
+<title></title>
+<head>
+	<link href="/html/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="/html/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+	 <link href="/html/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+	<style>
+  @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+  body, h1, h2, h3, h4, h5, h6{
+    font-family: 'Bree Serif', serif;
+  }
+  </style>
+	<script src="/html/js/jquery.min.js"></script>
+        <script src="/html/js/mbphillib.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="row">
+
+<H3 Id="titleheader"></h3>
+<hr>
+	
+<table class="table table-bordered" id="example1">
+	<thead>
+		<tr>
+		<th width="80px">TX#</th>
+		<th>Transaction Type</th>
+		<th>Particulars</th>
+		<th>Amount</th>
+		<th>Status</th>
+		<th>Reference</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+</div>
+</div>
+
+<script src="/html/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/html/js/accounting.min.js"></script>
+
+
+<script language="javascript">
+	console.log('test123');
+
+	function loadtrans() {
+
+
+                var sql = "SELECT * FROM (SELECT " +
+                        "A.TrnID," +
+                        "B.Description," +
+                        "C.Explanation," +
+                        "A.amount," +
+                        "A.status," +
+                        "LEFT(CONVERT(VARCHAR,Cast(A.v8RunDate as DateTime),120),10)   TrnDate," +
+                        "A.v8RunDate, " +
+                        "A.CheckNumber," +
+                        "A.Reference, " +
+                        "CASE A.ModuleID " +
+                        "WHEN 'BK001' THEN (SELECT BankAccountNum FROM BankAccounts WHERE GLACC=A.DebitAcct) " +
+                        "WHEN 'BK002' THEN (SELECT BankAccountNum FROM BankAccounts WHERE GLACC=A.DebitAcct) " +
+                        "END BankDesc " +
+                        "FROM MasterTRN A " +
+                        "LEFT JOIN Modules B on A.ModuleID=B.ModuleID " +
+                        "LEFT JOIN GLEntry C on A.GLTrnType=C.GLtrntype AND A.ModuleID=C.ModuleID " +
+                        "WHERE 1=1 and A.v8RunDate=(select mbvalue from appconfig where mbfield1='sysdate') AND C.Status = 1) X " +
+                        "WHERE X.status IN ('1','99') order by X.TrnID";
+
+console.log(sql);
+
+
+
+                $.ajax({
+                    type: "post",
+                    url: MB.URLPoster(),
+                    data: { SQLStatement: sql },
+                    success: function (result) {
+                        //console.log(result);
+                        $.each(JSON.parse(result), function (key, value) {
+                            var tr = "<tr>";
+                            var bnk = "";
+                            if (value.BankDesc != null) {
+                                bnk = ' - #' + value.BankDesc;
+                            }
+
+
+                            tr += "<td class=' '>" + value.TrnID + "</td>";
+                            tr += "<td class=' '>" + value.Description + "</td>";
+                            tr += "<td class=' '>" + value.Explanation + bnk + "</td>";
+                            tr += "<td class=' '>" + accounting.formatMoney(value.amount) + "</td>";
+                            if (value.status == 1) {
+                                tr += "<td>Posted</td>";
+                            } else {
+                                tr += "<td>Canceled</td>";
+                            }
+                            if (value.CheckNumber == 0) {
+                                tr += "<td class=' '>" + value.Reference + "</td>";
+                            } else {
+                                tr += "<td class=' '> Check# " + value.CheckNumber + "</td>";
+                            }
+                            tr += " </tr>";
+                            $('#example1').append(tr);
+
+			    $('#titleheader').html('Posted Transaction : '+value.TrnDate);
+
+                        });
+                        
+                    }
+                });
+            }
+
+loadtrans();
+
+	
+</script>
+	
+</body>
+</html>
